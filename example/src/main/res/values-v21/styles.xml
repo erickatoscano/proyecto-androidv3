@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="rating_bar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:numStars">5</item>
+        <item name="android:scaleX">0.6</item>
+        <item name="android:scaleY">0.6</item>
+        <item name="android:progressBackgroundTint">#D7D7D7</item>
+        <item name="android:rating">1.5</item>
+        <item name="android:transformPivotX">0dp</item>
+        <item name="android:layout_marginRight">-70dp</item>
+    </style>
+</resources>

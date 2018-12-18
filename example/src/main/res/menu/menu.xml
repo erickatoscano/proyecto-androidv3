@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_ciudad"
+        android:title="Ciudad Turistica"
+        app:showAsAction="never"/>
+    <item android:id="@+id/menu_street"
+        android:title="Street Art"
+        app:showAsAction="never"/>
+    <item android:id="@+id/menu_casas"
+        android:title="Casas Coloniales"
+        app:showAsAction="never"/>
+    <item android:id="@+id/menu_tienda"
+        android:title="Tienda"
+        app:showAsAction="never"/>
+
+</menu>

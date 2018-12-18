@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".street_detalle">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar"/>
+
+
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/titulos"
+                android:text=""/>
+            <ImageView
+                android:id="@+id/img_360"
+                android:layout_width="wrap_content"
+                android:layout_height="220dp"
+                android:src="@drawable/asset07"/>
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/sub"
+                android:text="Historia" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text='"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."' />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="101dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/play" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/sub"
+                android:text="Tienda - Recuerdos relacionados?"/>
+
+
+            <GridLayout
+                android:id="@+id/grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp"
+                android:columnCount="4"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    style="@style/imagen_tienda"
+                    app:srcCompat="@drawable/tienda" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    style="@style/imagen_tienda"
+                    app:srcCompat="@drawable/tienda"/>
+
+                <TextView
+                    style="@style/tienda_sub"
+                    android:text="Librito Tradición Oral" />
+
+                <TextView
+                    style="@style/precio"
+                    android:text="10$"/>
+
+                <TextView
+                    style="@style/tienda_sub"
+                    android:text="Librito Tradición Oral" />
+
+                <TextView
+                    style="@style/precio"
+                    android:text="10$"/>
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
