@@ -4,7 +4,6 @@
         <item>Ciudad Turistica</item>
         <item>Street Art</item>
         <item>Casas Coloniales</item>
-        <item>Ruta Cascadas</item>
         <item>Tienda</item>
     </string-array>
 
@@ -22,6 +21,7 @@
     <string-array name="lugares_ciudad">
         <item>Iglesia San Lorenzo</item>
     </string-array>
+
     <string-array name="des_ciudad">
         <item>Iglesia ubicada en el centro de Jipijapa donde yace una de las leyendas más antiguas</item>
     </string-array>
@@ -35,5 +35,20 @@
     <string-array name="des_casas">
         <item>Casa del Sr. Nieto ubicada en xxx</item>
         <item>Casa del Sr. Guaranda ubicada en xxx</item>
+    </string-array>
+
+    <string-array name="historia_ciudad">
+        <item>Esta es la historia larga de la Iglesia ubicada en el centro de Jipijapa donde yace una de las leyendas más antiguas</item>
+    </string-array>
+
+    <string-array name="historia_murales">
+        <item>Esta es la historia larga del Mural que relata xx ubicado en xx</item>
+        <item>Esta es la historia larga del Mural que relata xx ubicado en xx</item>
+        <item>Esta es la historia larga del Mural que relata xx ubicado en xx</item>
+    </string-array>
+
+    <string-array name="historia_casas">
+        <item>Esta es la historia larga de la Casa del Sr. Nieto ubicada en xxx</item>
+        <item>Esta es la historia larga de la Casa del Sr. Guaranda ubicada en xxx</item>
     </string-array>
 </resources>

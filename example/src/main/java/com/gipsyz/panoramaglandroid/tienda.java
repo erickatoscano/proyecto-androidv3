@@ -39,7 +39,7 @@ public class tienda extends AppCompatActivity {
             }
         });
 
-        
+
         // T I T U L O
         Intent intent = getIntent();
         String message = intent.getStringExtra(EXTRA_MESSAGE);

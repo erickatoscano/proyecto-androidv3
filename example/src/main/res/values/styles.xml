@@ -12,16 +12,32 @@
     <style name="titulos">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textSize">70dp</item>
+        <item name="android:textSize">50dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">-25dp</item>
+        <item name="android:fontFamily">@font/cabana</item>
+    </style>
+
+    <style name="img_principal">
+        <item name="android:layout_width">400dp</item>
+        <item name="android:layout_height">160dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="subtitulos">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">45dp</item>
+        <item name="android:layout_marginTop">-5dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginTop">20dp</item>
         <item name="android:fontFamily">@font/cabana</item>
     </style>
     <style name="sub">
         <item name="android:gravity">left</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textSize">60dp</item>
+        <item name="android:textSize">40dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">20dp</item>

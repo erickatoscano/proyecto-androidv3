@@ -21,11 +21,10 @@ public class p_principal extends AppCompatActivity implements View.OnClickListen
 
 
     public static final String EXTRA_MESSAGE = "com.example.administrador.myapplication.MESSAGE";
-    private ImageView ivSA,ivCC, ivRC, ivCT, ivT, ivCTi;
+    private ImageView ivSA,ivCC, ivRC, ivCTi;
 
     private String[] titulo;
 
-    private ImageView street, casas,ruta,ciudad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +35,11 @@ public class p_principal extends AppCompatActivity implements View.OnClickListen
         ivSA=(ImageView) findViewById(R.id.icono1);
         ivCC=(ImageView) findViewById(R.id.icono2);
         ivRC=(ImageView) findViewById(R.id.icono3);
-        ivCT=(ImageView) findViewById(R.id.icono4);
         ivCTi=(ImageView) findViewById(R.id.icono5);
 
         ivSA.setOnClickListener(this);
         ivCC.setOnClickListener(this);
         ivRC.setOnClickListener(this);
-        ivCT.setOnClickListener(this);
         ivCTi.setOnClickListener(this);
     }
 
@@ -66,9 +63,11 @@ public class p_principal extends AppCompatActivity implements View.OnClickListen
                 startActivity(intent3);
                 break;
             case R.id.icono5:
+                Toast.makeText(this, "Próximamente... ", Toast.LENGTH_LONG).show();
+                /*
                 Intent intent5 = new Intent(this, tienda.class);
-                intent5.putExtra(EXTRA_MESSAGE, titulo[4].toString());
-                startActivity(intent5);
+                intent5.putExtra(EXTRA_MESSAGE, titulo[3].toString());
+                startActivity(intent5);*/
                 break;
 
         }

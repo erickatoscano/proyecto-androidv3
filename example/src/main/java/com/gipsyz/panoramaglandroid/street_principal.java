@@ -26,16 +26,25 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
 
     public static final String EXTRA_MESSAGE = "com.example.administrador.myapplication.MESSAGE";
     private Toolbar toolbar;
-
-    private String[] tituloMenu;
-    private ImageView iv1;
     private TextView titulo;
-    private String[] tituloArray, muralesArray, casasArray, lugaresArray, desciudadArray, desArtArray, desCasaArray;
+    private String[] tituloMenu, tituloArray, muralesArray, casasArray, lugaresArray, desciudadArray, desArtArray, desCasaArray;
     final TextView[] textViewArray = new TextView[3];
-    final TextView[] textViewArray2 = new TextView[3];
     final ImageView[] imageViewArray = new ImageView[3];
-    private GridLayout gridLayout;
     private  LinearLayout linearArray;
+    private int[] iconsMural = {
+            R.drawable.mural3,
+            R.drawable.mural2,
+            R.drawable.mural1,
+    };
+    private int[] iconsIglesia = {
+            R.drawable.iglesiaicon,
+    };
+    private int[] iconsCasas = {
+            R.drawable.casa1,
+            R.drawable.casa2,
+
+    };
+
 
     @SuppressLint("WrongConstant")
     @Override
@@ -57,8 +66,6 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        gridLayout = (GridLayout) findViewById(R.id.grid_layout);
-
         linearArray = (LinearLayout) findViewById(R.id.linearLay);
 
         tituloArray= getResources().getStringArray(R.array.titulos);
@@ -79,11 +86,9 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
 
 
         if (titulo.getText().equals(tituloArray[0].toString())){
-
             for (int i = 0; i<lugaresArray.length; i++){
-
                 imageViewArray[i] = new ImageView(this);
-                imageViewArray[i].setImageResource(R.drawable.asset05);
+                imageViewArray[i].setImageResource(iconsIglesia[i]);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
 
                 layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
@@ -111,35 +116,18 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
                     public void onClick(View v) {
                         Intent intent1 = new Intent(getApplicationContext(), street_detalle.class);
                         intent1.putExtra(EXTRA_MESSAGE, textViewArray[finalI].getText());
+                        intent1.putExtra("titulo", titulo.getText());
                         startActivity(intent1);
                     }
                 });
-
-/*
-                final TextView txtTiulo1 = (TextView) findViewById(R.id.txtTitulo1);
-                txtTiulo1.setText(lugaresArray[i]);
-                txtTiulo1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent1 = new Intent(getApplicationContext(), street_detalle.class);
-                        intent1.putExtra(EXTRA_MESSAGE, txtTiulo1.getText());
-                        startActivity(intent1);
-                    }
-                });
-
-*/
             }
-
-
-
-
         }
         if (titulo.getText().equals(tituloArray[1].toString())){
             TextView[] descripcionArray = new TextView[muralesArray.length];
             for (int i = 0; i<muralesArray.length; i++){
 
                 imageViewArray[i] = new ImageView(this);
-                imageViewArray[i].setImageResource(R.drawable.asset05);
+                imageViewArray[i].setImageResource(iconsMural[i]);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
 
                 layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
@@ -152,6 +140,8 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
                     public void onClick(View v) {
                         Intent intent1 = new Intent(getApplicationContext(), street_detalle.class);
                         intent1.putExtra(EXTRA_MESSAGE, textViewArray[finalI].getText());
+
+                        intent1.putExtra("titulo", titulo.getText());
                         startActivity(intent1);
                     }
                 });
@@ -179,7 +169,7 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
             for (int i = 0; i<casasArray.length; i++){
 
                 imageViewArray[i] = new ImageView(this);
-                imageViewArray[i].setImageResource(R.drawable.asset05);
+                imageViewArray[i].setImageResource(iconsCasas[i]);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(400, 400);
 
                 layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
@@ -187,13 +177,13 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
                 imageViewArray[i].setPadding(0,20,0,10);
 
                 textViewArray[i] = new TextView(this);
-                textViewArray[i].setText(desCasaArray[i]);
+                textViewArray[i].setText(casasArray[i]);
                 textViewArray[i].setGravity(Gravity.CENTER);
                 textViewArray[i].setPadding(0,0,0,5);
                 textViewArray[i].setTextAppearance(getApplicationContext(), R.style.titulos_act);
 
                 descripcionArray[i] = new TextView(this);
-                descripcionArray[i].setText(desArtArray[i]);
+                descripcionArray[i].setText(desCasaArray[i]);
                 descripcionArray[i].setGravity(Gravity.CENTER);
                 descripcionArray[i].setTextAppearance(getApplicationContext(), R.style.descripcion_act);
 
@@ -207,30 +197,14 @@ public class street_principal extends AppCompatActivity implements View.OnClickL
                     public void onClick(View v) {
                         Intent intent1 = new Intent(getApplicationContext(), street_detalle.class);
                         intent1.putExtra(EXTRA_MESSAGE, textViewArray[finalI].getText());
+
+                        intent1.putExtra("titulo", titulo.getText());
                         startActivity(intent1);
                     }
                 });
 
             }
         }
-        if (titulo.getText().equals(tituloArray[3].toString())){
-            Toast.makeText(getApplicationContext(),"Proximamente",2).show();
-        }
-
-
-        //ir a la otra pantalla
-        /*
-        iv1=(ImageView) findViewById(R.id.iconostreet1);
-        iv1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), street_detalle.class);
-                startActivity(intent);
-            }
-        });
-*/
-
-
     }
 
 

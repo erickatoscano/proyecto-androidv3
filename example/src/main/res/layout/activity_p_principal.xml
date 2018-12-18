@@ -29,37 +29,22 @@
                 tools:layout_editor_absoluteY="88dp" />
             <ImageView
                 android:id="@+id/icono1"
-                android:layout_width="398dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
+                style="@style/img_principal"
                 app:srcCompat="@drawable/asset04" />
             <ImageView
                 android:id="@+id/icono2"
-                android:layout_width="398dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
-
+                style="@style/img_principal"
                 app:srcCompat="@drawable/asset01" />
 
             <ImageView
                 android:id="@+id/icono3"
-                android:layout_width="398dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
+                style="@style/img_principal"
                 app:srcCompat="@drawable/assetcasa" />
 
             <ImageView
-                android:id="@+id/icono4"
-                android:layout_width="398dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/asset03" />
-            <ImageView
                 android:id="@+id/icono5"
-                android:layout_width="398dp"
-                android:layout_height="160dp"
-                android:layout_gravity="center"
-                app:srcCompat="@drawable/asset03" />
+                style="@style/img_principal"
+                app:srcCompat="@drawable/asset5" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,5 +1,6 @@
 package com.gipsyz.panoramaglandroid;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -22,10 +23,15 @@ import com.panoramagl.enumerations.PLSensorialRotationType;
 
 import java.lang.reflect.Array;
 
+import static com.gipsyz.panoramaglandroid.street_principal.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity  {
 
     private PLManager plManager;
     private int currentIndex = -1;
+
+
+    private String[] tituloArray, muralesArray, casasArray, lugaresArray, desciudadArray, desArtArray, desCasaArray;
 
 
 
@@ -46,8 +52,19 @@ public class MainActivity extends AppCompatActivity  {
 
 
     //ARREGLO CON LAS IMÁGENES A MOSTRAR 2048*1024
-    private int[] resourceIds = new int[]{ R.raw.test_3,
+    private int[] resourceIds = new int[]{
+            R.raw.test_3,
             R.raw.test4};
+
+    private int[] iglesiaIds = new int[]{
+            R.raw.iglesia};
+    private int[] casasIds = new int[]{
+            R.raw.guaranda,
+            R.raw.nieto};
+    private int[] muralIds = new int[]{
+            R.raw.mural1,
+            R.raw.mural2,
+            R.raw.mural3};
 
    /* private View.OnClickListener buttonClickListener = new View.OnClickListener() {
         @Override
@@ -99,7 +116,44 @@ public class MainActivity extends AppCompatActivity  {
         plManager.setInertiaEnabled(false);
         plManager.setZoomEnabled(false);
 
-        changePanorama(1);
+
+
+
+        Intent intent = getIntent();
+        String tituloPrincipal = intent.getStringExtra(EXTRA_MESSAGE);
+
+        Intent intent2 = getIntent();
+        String lugar = intent2.getStringExtra("lugar");
+
+        muralesArray = getResources().getStringArray(R.array.lugares_murales);
+        lugaresArray = getResources().getStringArray(R.array.lugares_ciudad);
+        casasArray = getResources().getStringArray(R.array.lugares_casas);
+
+
+        tituloArray= getResources().getStringArray(R.array.titulos);
+
+
+        if (tituloPrincipal.equals(tituloArray[0].toString())){
+            for (int i = 0; i<lugaresArray.length; i++){
+                changePanoramaIglesia(i);
+            }
+        }
+        if (tituloPrincipal.equals(tituloArray[1].toString())){
+            for (int i = 0; i<muralesArray.length; i++){
+                if(lugar.equals(muralesArray[i])){
+                    changePanoramaMurales(i);
+                }
+            }
+        }
+        if (tituloPrincipal.equals(tituloArray[2].toString())){
+            for (int i = 0; i<casasArray.length; i++){
+                if(lugar.equals(casasArray[i])){
+                    changePanoramaCasa(i);
+                }
+            }
+        }
+
+
 
        /* Button button1 = ((Button) findViewById(R.id.button_1));
         Button button2 = ((Button) findViewById(R.id.button_2));*/
@@ -113,6 +167,82 @@ sensorManager = (SensorManager)this.getSystemService(SENSOR_SERVICE);
 
 
     }
+
+    private void changePanoramaCasa(int index) {
+
+        if(currentIndex == index) return;
+
+
+        plManager.startSensorialRotation();
+
+        panorama = new PLSphericalPanorama();
+        panorama.setImage(new PLImage(PLUtils.getBitmap(this, casasIds[index]), false));
+        float pitch = 5f;//Orientación en Y
+        float yaw = 0f;
+        float zoomFactor = 100f; //velocidad de desplazamiento
+
+        if(currentIndex != -1) {
+            PLICamera camera = plManager.getPanorama().getCamera();
+            pitch = camera.getPitch();
+            yaw = camera.getYaw();
+            zoomFactor = camera.getZoomFactor();
+        }
+
+        panorama.getCamera().lookAtAndZoomFactor(pitch, yaw, zoomFactor, false);
+        plManager.setPanorama(panorama);
+        currentIndex = index;
+    }
+
+    private void changePanoramaMurales(int index) {
+
+        if(currentIndex == index) return;
+
+
+        plManager.startSensorialRotation();
+
+        panorama = new PLSphericalPanorama();
+        panorama.setImage(new PLImage(PLUtils.getBitmap(this, muralIds[index]), false));
+        float pitch = 5f;//Orientación en Y
+        float yaw = 0f;
+        float zoomFactor = 100f; //velocidad de desplazamiento
+
+        if(currentIndex != -1) {
+            PLICamera camera = plManager.getPanorama().getCamera();
+            pitch = camera.getPitch();
+            yaw = camera.getYaw();
+            zoomFactor = camera.getZoomFactor();
+        }
+
+        panorama.getCamera().lookAtAndZoomFactor(pitch, yaw, zoomFactor, false);
+        plManager.setPanorama(panorama);
+        currentIndex = index;
+    }
+
+    private void changePanoramaIglesia(int index) {
+
+        if(currentIndex == index) return;
+
+
+        plManager.startSensorialRotation();
+
+        panorama = new PLSphericalPanorama();
+        panorama.setImage(new PLImage(PLUtils.getBitmap(this, iglesiaIds[index]), false));
+        float pitch = 5f;//Orientación en Y
+        float yaw = 0f;
+        float zoomFactor = 100f; //velocidad de desplazamiento
+
+        if(currentIndex != -1) {
+            PLICamera camera = plManager.getPanorama().getCamera();
+            pitch = camera.getPitch();
+            yaw = camera.getYaw();
+            zoomFactor = camera.getZoomFactor();
+        }
+
+        panorama.getCamera().lookAtAndZoomFactor(pitch, yaw, zoomFactor, false);
+        plManager.setPanorama(panorama);
+        currentIndex = index;
+    }
+
 
     @Override
     protected void onResume() {
