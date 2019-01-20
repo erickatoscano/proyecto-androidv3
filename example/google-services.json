@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "420183142633",
+    "firebase_url": "https://proyecto-android-e457c.firebaseio.com",
+    "project_id": "proyecto-android-e457c",
+    "storage_bucket": "proyecto-android-e457c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420183142633:android:3e690a2768ec611f",
+        "android_client_info": {
+          "package_name": "com.gipsyz.panoramaglandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420183142633-ju8mhm0vqv51kskp8dcopu7q81le0gqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8LTp5QvnJftWC0ZYbAqYIDyxw0ykzIww"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

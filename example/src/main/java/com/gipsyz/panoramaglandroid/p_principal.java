@@ -1,7 +1,10 @@
 package com.gipsyz.panoramaglandroid;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
@@ -22,6 +27,7 @@ public class p_principal extends AppCompatActivity implements View.OnClickListen
 
     public static final String EXTRA_MESSAGE = "com.example.administrador.myapplication.MESSAGE";
     private ImageView ivSA,ivCC, ivRC, ivCTi;
+    public TextView btn_internet;
 
     private String[] titulo;
 
@@ -36,6 +42,19 @@ public class p_principal extends AppCompatActivity implements View.OnClickListen
         ivCC=(ImageView) findViewById(R.id.icono2);
         ivRC=(ImageView) findViewById(R.id.icono3);
         ivCTi=(ImageView) findViewById(R.id.icono5);
+        btn_internet = (TextView) findViewById(R.id.hilos);
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+
+
+
+        } else {
+            btn_internet.setText("No tienes conexión a Internet, la funciomnes 360 no se podrán ejecutar");
+
+        }
 
         ivSA.setOnClickListener(this);
         ivCC.setOnClickListener(this);

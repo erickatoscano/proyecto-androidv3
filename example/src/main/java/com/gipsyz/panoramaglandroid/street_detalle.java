@@ -1,7 +1,10 @@
 package com.gipsyz.panoramaglandroid;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,16 +20,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.BreakIterator;
+
 import static com.gipsyz.panoramaglandroid.street_principal.EXTRA_MESSAGE;
 
 public class street_detalle extends AppCompatActivity {
     private Toolbar toolbar;
-    private String[] historiaMural, historiaIglesia, historiaCasa,tituloArray, muralesArray, casasArray, lugaresArray, tituloMenu;
+    private String[] historiaContenedor, arrayContenedor, historiaMural, historiaIglesia, historiaCasa,tituloArray, muralesArray, casasArray, lugaresArray, tituloMenu;
     private TextView titulo, subTitulo, historia;
     private  WebView webView;
     private  LinearLayout linearArray;
+    public TextView btn_internet;
 
     final ImageView[] imageViewArray = new ImageView[3];
+    private int[] arrayCImagen;
     private int[] mural360 = {
             R.drawable.mural3360,
             R.drawable.mural2360,
@@ -59,10 +66,10 @@ public class street_detalle extends AppCompatActivity {
             }
         });
 
+
         muralesArray = getResources().getStringArray(R.array.lugares_murales);
         lugaresArray = getResources().getStringArray(R.array.lugares_ciudad);
         casasArray = getResources().getStringArray(R.array.lugares_casas);
-
 
         tituloMenu= getResources().getStringArray(R.array.titulos);
         historiaIglesia = getResources().getStringArray(R.array.historia_ciudad);
@@ -79,76 +86,73 @@ public class street_detalle extends AppCompatActivity {
         subTitulo = findViewById(R.id.subtitulo);
         subTitulo.setText(message2);
 
-
         historia = (TextView)findViewById(R.id.historia) ;
 
         tituloArray= getResources().getStringArray(R.array.titulos);
-
-
+        accionar();
+    }
+    private void accionar(){
         linearArray = (LinearLayout) findViewById(R.id.linearLay2);
-        if (subTitulo.getText().equals(tituloArray[0].toString())){
-            for (int i = 0; i<lugaresArray.length; i++){
+        for (int i = 0; i<tituloArray.length; i++){
+            if (subTitulo.getText().equals(tituloArray[i].toString())){
+                switch (i){
+                    case 0:
+                        arrayContenedor=lugaresArray;
+                        arrayCImagen=iglesia360;
+                        historiaContenedor=historiaIglesia;
+                        break;
+                    case 1:
+                        arrayContenedor=muralesArray;
+                        arrayCImagen=mural360;
+                        historiaContenedor=historiaMural;
+                        break;
+                    case 2:
+                        arrayContenedor=casasArray;
+                        arrayCImagen=casas360;
+                        historiaContenedor=historiaCasa;
+                        break;
+                }
 
 
-                imageViewArray[i] = new ImageView(this);
-                imageViewArray[i].setImageResource(iglesia360[i]);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 450);
-                layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
-                imageViewArray[i].setLayoutParams(layoutParams);
-                historia.setText(historiaIglesia[i]);
-                linearArray.addView(imageViewArray[i]);
-                imageViewArray[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        btn360();
+                for (int j = 0; j<arrayContenedor.length; j++){
+                    if(titulo.getText().equals(arrayContenedor[j])){
+                        imageViewArray[j] = new ImageView(this);
+                        imageViewArray[j].setImageResource(arrayCImagen[j]);
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 450);
+                        layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
+                        imageViewArray[j].setLayoutParams(layoutParams);
+                        historia.setText(historiaContenedor[j]);
+                        linearArray.addView(imageViewArray[j]);
+                        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+                        if (networkInfo != null && networkInfo.isConnected()) {
+
+                            imageViewArray[j].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    btn360();
+                                }
+                            });
+
+                        } else {
+                            imageViewArray[j].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(getApplicationContext(), R.string.mensaje, Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
+                        }
+
+
+
                     }
-                });
-            }
-        }
-        if (subTitulo.getText().equals(tituloArray[1].toString())){
-            for (int i = 0; i<muralesArray.length; i++){
-                if(titulo.getText().equals(muralesArray[i])){
-
-                    imageViewArray[i] = new ImageView(this);
-                    imageViewArray[i].setImageResource(mural360[i]);
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 450);
-                    layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
-                    imageViewArray[i].setLayoutParams(layoutParams);
-                    historia.setText(historiaMural[i]);
-                    linearArray.addView(imageViewArray[i]);
-                    imageViewArray[i].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            btn360();
-                        }
-                    });
                 }
             }
+
         }
-        if (subTitulo.getText().equals(tituloArray[2].toString())){
-            for (int i = 0; i<casasArray.length; i++){
-                if(titulo.getText().equals(casasArray[i])){
-
-                    imageViewArray[i] = new ImageView(this);
-                    imageViewArray[i].setImageResource(casas360[i]);
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 450);
-                    layoutParams.gravity=Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
-                    imageViewArray[i].setLayoutParams(layoutParams);
-                    historia.setText(historiaCasa[i]);
-                    linearArray.addView(imageViewArray[i]);
-                    imageViewArray[i].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            btn360();
-                        }
-                    });
-                }
-
-            }
-        }
-
-
-
     }
 
     private void btn360() {
@@ -187,8 +191,6 @@ public class street_detalle extends AppCompatActivity {
                 intent5.putExtra(EXTRA_MESSAGE, tituloMenu[4].toString());
                 startActivity(intent5);
                 break;
-
-
 
         }
         return true;

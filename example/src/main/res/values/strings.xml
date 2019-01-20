@@ -4,9 +4,8 @@
         <item>Ciudad Turistica</item>
         <item>Street Art</item>
         <item>Casas Coloniales</item>
-        <item>Tienda</item>
     </string-array>
-
+    <string name="mensaje">No tienes conexión a Internet, la funciones 360 no se podrán ejecutar</string>
     <string-array name="lugares_murales">
         <item>Mural Calle 1</item>
         <item>Mural Calle 2</item>
