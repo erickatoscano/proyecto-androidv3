@@ -171,7 +171,7 @@ public class PLUtils
 		}
 		return null;
 	}
-	
+
 	public static Bitmap getBitmap(Context context, String url)
 	{
 		return getBitmap(context, url, Config.ARGB_8888);

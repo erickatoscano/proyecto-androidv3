@@ -151,11 +151,21 @@ public class MainActivity extends AppCompatActivity  {
                         arrayURL = urlCasas;
                         titulosArray=casasArray;
                         break;
+                        default:
+                            break;
                 }
                 for (int j = 0; j<titulosArray.length; j++){
                     if(lugar.equals(titulosArray[j])){
                         System.out.println("ENTRO");
                         url_new= arrayURL[j];
+
+                        try{
+                            Thread.sleep(1000); //Coge el hilo actual y lo pone a dormir, 1000 > 1seg, la tarea tardar un segundo en ejecutarse
+
+
+                        }catch (InterruptedException e){
+
+                        }
                         CargaImagenes nuevaTarea = new CargaImagenes();
                         nuevaTarea.execute(url_new);
                     }
