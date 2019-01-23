@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -234,10 +235,16 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-    private class CargaImagenes extends AsyncTask<String, Void, Bitmap> {
+    private class CargaImagenes extends AsyncTask<String, Void, Bitmap> { //Clase asytask
+        //PARAMETROS                    1. TIPOS DE DATOS DE ENTRADA (DO IN BACKGROUND), ENTRADA
+        //                              2. TIPO DE DATOS CON EL QUE SE ACTUALIZA LA TAREA (PUBLISH PROGRESS)
+        //                              3. RESULTADO QUE DEVUELVE AL FINAL (DESPUES DE DO IN BACKGROUND, LUEGO AL POST EXECUTE), SALIDA
 
         ProgressDialog pDialog;
+        ProgressBar progressBar;
 
+        //Ejecutaremos en el hilo principal cosas que queremos poner ANTES del segundo plano, ej iniciar variables, objectos, preparar componenes
+        //antes
         @Override
         protected void onPreExecute() {
             // TODO Auto-generated method stub
@@ -245,12 +252,20 @@ public class MainActivity extends AppCompatActivity  {
 
             pDialog = new ProgressDialog(MainActivity.this);
             pDialog.setMessage("Cargando Imagen");
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.show();
 
+            progressBar = new ProgressBar(MainActivity.this);
+            progressBar.setMax(100);
+            progressBar.setProgress(0);
+            progressBar.setVisibility(View.VISIBLE);
+
+
         }
 
+        //LO QUE HAY QUE HACER EN SEGUNDO PLANO, TAREA LARGA, PUBLISH PROGRESS SE EJECUTA CON EL HILO PRINCIPAL
+        //DURANTE
         @Override
         protected Bitmap doInBackground(String... params) {
             // TODO Auto-generated method stub
@@ -258,16 +273,29 @@ public class MainActivity extends AppCompatActivity  {
             String url = params[0];
             Bitmap imagen = descargarImagen(url);
             return imagen;
+
+            //publishProgress(i*10);
         }
 
+        //Se ejecuta en el hilo de la interfaz de usuario, hilo principal, se ejecuta cuando se hace una llamada, se prolonga todo el tiempo que
+        //sea necesario hasta que la tarea en segundo plano acabr
+        //SE COMUNICA CON EL HILO PRINCIPAL
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        //YA ACABA TODO, TIPO MENSAJE AL PARECER
+        //DESPUES DEL SEGUNDO HILO
         @Override
         protected void onPostExecute(Bitmap result) {
             // TODO Auto-generated method stub
             super.onPostExecute(result);
+
+
             plManager.startSensorialRotation();
 
             panorama = new PLSphericalPanorama();
-
             panorama.setImage(new PLImage(result, false));
             float pitch = 5f;//Orientación en Y
             float yaw = 0f;
@@ -286,6 +314,11 @@ public class MainActivity extends AppCompatActivity  {
             pDialog.dismiss();
         }
 
+        //SI CORTO LA EJECUCIÒN DE ESE SEGUNDO HILO SE LLAMA A ESTA FUNCION Y EJECUTA LA FUNCION EN CASO DE QUE SE CANCELE EL HILO
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
     }
 
     private Bitmap descargarImagen (String imageHttpAddress){
